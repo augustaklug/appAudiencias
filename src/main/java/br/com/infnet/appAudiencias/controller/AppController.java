@@ -24,6 +24,12 @@ public class AppController {
 		return "login";
 	}
 
+	@RequestMapping(value = "/lista", method = RequestMethod.GET)
+	public String home(
+	) {
+		return "home";
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String showLogin() {
 		return this.showInit();
@@ -39,6 +45,7 @@ public class AppController {
 		Usuario usuario = usuarioService.userExist(login);
 		
 		if(usuario == null) {
+			model.addAttribute("mensagem", "Usuário não cadastrado: " + login);
 			return "usuario/detalhe";
 			
 		}else if (!usuarioService.isValid(login, senha)) {

@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AppGrana</title>
+  <title>AppAudiências</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -18,69 +18,48 @@
 		<div class="container-fluid" style="margin-top:80px">
 
 			<c:import url="/WEB-INF/jsp/header.jsp"/>
-				
-			<form class="form-inline" action="/incluir" method="post">
-			  <label for="tipo" class="mr-sm-2">Tipo:</label>		  
-				<select name="tipo" class="form-control mb-2 mr-sm-2">
-					<option value="1">Pagamento</option>
-					<option value="2">Recebimento</option>
-					<option value="3">A pagar</option>
-					<option value="4">A receber</option>
-				</select>
-	
-			  <label for="data" class="mr-sm-2">Data:</label>
-			  <input type="date" class="form-control mb-2 mr-sm-2" name="data">
-			  
-<!-- 			  <label for="dhLanc" class="mr-sm-2">Data:</label> -->
-<!-- 			  <input type="datetime-local" class="form-control mb-2 mr-sm-2" name="dhLanc"> -->
 
-			  <label for="descricao" class="mr-sm-2">Descrição:</label>
-			  <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Entre com a descrição" name="descricao">
-	
-			  <label for="valor" class="mr-sm-2">Valor:</label>
-			  <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Entre com o valor" name="valor">
-	
-			  <button type="submit" class="btn btn-primary mb-2">Lançar</button>
-			</form>	
-	
-			<h5>Lançamentos financeiros: ${filtro}</h5>
-			<table class="table table-striped">
-			    <thead>
-			      <tr>
-			        <th>Descrição</th>
-			        <th>Data</th>
-			        <th>Valor</th>
-			        <th>Tipo</th>
-			        <th></th>
-			        <th></th>
-			      </tr>
-			    </thead>
-			    <tbody>
-			  		<c:forEach var="o" items="${listaLancamento}">
-			  		
-				      <c:choose>         
-				         <c:when test = "${o.tipo == 1}"><c:set var = "tipo" value = "Pagamento"/></c:when>			         
-				         <c:when test = "${o.tipo == 2}"><c:set var = "tipo" value = "Recebimento"/></c:when>			         
-				         <c:when test = "${o.tipo == 3}"><c:set var = "tipo" value = "A pagar"/></c:when>			
-				         <c:when test = "${o.tipo == 4}"><c:set var = "tipo" value = "A receber"/></c:when>
-				         <c:otherwise><c:set var = "tipo" value = "Outro tipo"/></c:otherwise>
-				      </c:choose>
-	
-	  				  <fmt:parseDate value="${o.data}" pattern="yyyy-MM-dd" var="dataFormatada" type="date"/>
-	      		  		
-				      <tr>
-				        <td>${o.descricao}</td>
-				        <td><fmt:formatDate value="${dataFormatada}" type="date" pattern="dd/MM/yyyy"/></td>
-				        <td>${o.valor}</td>
-				        <td>${tipo}</td>
-				        <td><a href="/lancamento/excluir/${o.id}">Excluir</a></td>
-				        <td><a href="/lancamento/confirmar/${o.id}">Confirmar</a></td>
-				      </tr>
-					</c:forEach>
-			    </tbody>
-			  </table>
-		</div>			
-	</div>	
-	
+
+			<div class="card text-center mb-3 bg-info" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">Processo</h5>
+					<p class="card-text">Cadastre aqui um processo</p>
+					<a href="/processo" class="btn btn-dark">Cadastro</a>
+				</div>
+			</div>
+
+
+			<div class="card text-center mb-3 bg-info" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">Processo</h5>
+					<p class="card-text">Acessar a listagem de processos</p>
+					<a href="/processos" class="btn btn-dark">Lista</a>
+				</div>
+			</div>
+
+
+
+			<div class="card text-center mb-3 bg-success" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">Audiência</h5>
+					<p class="card-text">Cadastre aqui uma audiência</p>
+					<a href="/audiencia" class="btn btn-dark">Cadastro</a>
+				</div>
+			</div>
+
+
+
+			<div class="card text-center mb-3 bg-success" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">Audiência</h5>
+					<p class="card-text">Acessar a listagem de audiências</p>
+					<a href="/audiencias" class="btn btn-dark">Lista</a>
+				</div>
+			</div>
+
+
+	</div>
+		<c:import url="/WEB-INF/jsp/footer.jsp"/>
+
 </body>
 </html>

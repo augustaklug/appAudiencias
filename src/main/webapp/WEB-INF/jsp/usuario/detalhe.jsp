@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <title>AppGrana</title>
+  <title>AppAudiências</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -17,8 +17,16 @@
 		<div class="container-fluid" style="margin-top:80px">
 
 			<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-			  <a class="navbar-brand" href="/sair">AppGrana</a>
-			</nav>	
+			  <a class="navbar-brand" href="/sair">AppAudiências</a>
+			</nav>
+			<c:if test="${not empty mensagem}">
+				<div class="alert alert-warning">
+					<strong>${mensagem}</strong>
+				</div>
+				<div>
+					<h2>Por favor, efetue seu cadastro: </h2>
+				</div>
+			</c:if>
 
 			<form action="/usuario" method="post">
 			

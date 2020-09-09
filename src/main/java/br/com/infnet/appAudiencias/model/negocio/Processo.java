@@ -8,12 +8,9 @@ public class Processo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(unique = true)
     private Long numero;
     private String vara;
     private String magistrado;
-    @OneToOne(mappedBy = "processo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Audiencia audiencia;
 
     public Processo() {
     }
