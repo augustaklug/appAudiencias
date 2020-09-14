@@ -8,14 +8,14 @@ public class Processo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Long numero;
+    private String numero;
     private String vara;
     private String magistrado;
 
     public Processo() {
     }
 
-    public Processo(Integer id, Long numero, String vara, String magistrado) {
+    public Processo(Integer id, String numero, String vara, String magistrado) {
         this.id = id;
         this.numero = numero;
         this.vara = vara;
@@ -30,11 +30,11 @@ public class Processo {
         this.id = id;
     }
 
-    public Long getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Long numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
