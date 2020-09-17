@@ -24,6 +24,9 @@ public class AppController {
 		return "login";
 	}
 
+	@RequestMapping(value = "/cadastrar", method = RequestMethod.GET)
+	public String cadastrar(){return "usuario/detalhe";}
+
 	@RequestMapping(value = "/lista", method = RequestMethod.GET)
 	public String home(
 	) {
