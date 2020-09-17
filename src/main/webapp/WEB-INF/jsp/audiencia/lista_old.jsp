@@ -11,35 +11,35 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
-<body>	
+<body>
+		
 	<div class="container">
         <div class="container-fluid" style="margin-top:80px">
-	
 		<c:import url="/WEB-INF/jsp/header.jsp"/>
 
-		<form action="/processo" method="post">
+		<table class="table table-striped">
+		    <thead>
+		      <tr>
+				  <th>Processo</th>
+				  <th>Data</th>
+				  <th>Sala</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		  		<c:forEach var="aud" items="${listaAudiencia}">
+			      <tr>
+				    <td>${aud.processo.numero}</td>
+			        <td>${aud.data}</td>
+			        <td>${aud.sala}</td>
 
-		  <div class="form-group">
-		    <label for="numero">Número:</label>
-		    <input type="text" class="form-control" id="numero" name="numero">
-		  </div>
-
-            <div class="form-group">
-                <label for="vara">Vara:</label>
-                <input type="text" class="form-control" id="vara" name="vara">
-            </div>
-
-            <div class="form-group">
-                <label for="magistrado">Magistrado:</label>
-                <input type="text" class="form-control" id="magistrado" name="magistrado">
-            </div>
-		
-		  <button type="submit" class="btn btn-primary">Cadastrar</button>
-		</form>
+			        <td><a href="/audiencia/excluir/${aud.id}">Excluir</a></td>
+			      </tr>
+				</c:forEach>
+		    </tbody>
+		  </table>
 
         </div>
-        <c:import url="../components/footer.jsp"/>
-    </div>
-
+		<c:import url="/WEB-INF/jsp/footer.jsp"/>		
+	</div>
 </body>
 </html>
