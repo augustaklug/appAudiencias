@@ -20,7 +20,12 @@
       </div>
     </div>
     <ul class="nav flex-column">
-
+        <li class="nav-item ">
+            <a href="/lista" class="nav-link">
+                <span class="sidebar-icon"><span class="fas fa-home"></span></span>
+                <span>Home</span>
+            </a>
+        </li>
       <li class="nav-item">
 							  <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#submenu-proc">
 								<span>
