@@ -6,7 +6,7 @@
     <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
       <div class="d-flex align-items-center">
         <div class="user-avatar lg-avatar mr-4">
-          <img src="../../../assets/img/team/profile-picture-3.png" class="card-img-top rounded-circle border-white" alt="User avatar">
+          <img src="../../../resources/assets/img/team/profile-picture-3.png" class="card-img-top rounded-circle border-white" alt="User avatar">
         </div>
         <div class="d-block">
           <h2 class="h6">Olá, ${user.nome}</h2>
@@ -21,7 +21,7 @@
     </div>
     <ul class="nav flex-column">
         <li class="nav-item ">
-            <a href="/lista" class="nav-link">
+            <a href="/" class="nav-link">
                 <span class="sidebar-icon"><span class="fas fa-home"></span></span>
                 <span>Home</span>
             </a>
