@@ -52,7 +52,7 @@
 							<div class="form-group mb-4">
 								<label for="login">Seu login</label>
 								<div class="input-group">
-									<span class="input-group-text" id="basic-addon5"><span class="fas fa-user"></span></span>
+									<span class="input-group-text" id="basic-addon5"><span class="fas fa-user-shield"></span></span>
 									<input type="text" class="form-control" placeholder="Login" id="login" name="login" autofocus required>
 								</div>
 							</div>

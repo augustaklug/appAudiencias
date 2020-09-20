@@ -3,7 +3,6 @@ package br.com.infnet.appAudiencias.model.negocio;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "TProcesso")
 public class Processo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

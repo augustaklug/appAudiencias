@@ -1,15 +1,17 @@
 package br.com.infnet.appAudiencias.controller;
 
+import br.com.infnet.appAudiencias.model.negocio.Usuario;
 import br.com.infnet.appAudiencias.model.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import br.com.infnet.appAudiencias.model.service.UsuarioService;
+
+import java.security.Principal;
 
 @Controller
 @SessionAttributes("user")
@@ -38,10 +40,7 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loggedIn(Model model){
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		String nomeAtual = authentication.getName();
-		model.addAttribute("nome", nomeAtual);
+	public String loggedIn(){
 		return showInit();
 	}
 
@@ -70,10 +69,10 @@ public class AppController {
 		}
 	}*/
 
-	@RequestMapping(value = "/voltar", method = RequestMethod.GET) 
+/*	@RequestMapping(value = "/voltar", method = RequestMethod.GET)
 	public String voltar() {		
 		return this.showInit();
-	}
+	}*/
 	
 /*	@RequestMapping(value = "/sair", method = RequestMethod.GET)
 	public String sair(SessionStatus session) {

@@ -9,7 +9,6 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "TUsuario")
 public class Usuario implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
@@ -17,6 +16,8 @@ public class Usuario implements UserDetails {
 	private String login;
 	private String nome;
 	private String senha;
+	@OneToMany(mappedBy = "responsavel")
+	private List<Audiencia> audiencias = new ArrayList<>();
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles = new ArrayList<Role>();
 
@@ -27,6 +28,16 @@ public class Usuario implements UserDetails {
 		this.login = login;
 		this.nome = nome;
 		this.senha = senha;
+	}
+
+	public void addAudiencia(Audiencia audiencia) {
+		audiencias.add(audiencia);
+		audiencia.setResponsavel(this);
+	}
+
+	public void removeAudiencia(Audiencia audiencia) {
+		audiencias.remove(audiencia);
+		audiencia.setResponsavel(null);
 	}
 
 	public String getLogin() {

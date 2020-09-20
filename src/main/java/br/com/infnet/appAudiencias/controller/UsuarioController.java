@@ -29,7 +29,6 @@ public class UsuarioController {
 
 	@RequestMapping(value = "/usuario", method = RequestMethod.POST)
 	public String incluir(
-				Model model,
 				Usuario usuario,
 				@RequestParam("acesso") String acesso
 			) {

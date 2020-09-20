@@ -2,13 +2,13 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
-<html lang="pt-br">
+<html lang="pt-br" style="overflow-x: hidden">
 <head>
   <title>AppAudiências</title>
   <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 	<!--FavIcons-->
 	<c:import url="components/favicons.jsp"/>
@@ -39,7 +39,7 @@
 
 				<div class="row justify-content-md-center">
 					<div class="ml-3 mb-4">
-						<h4 class="display-4">Bem-vindo ao AppAudiências, ${user.nome}! </h4>
+						<p class="lead"><strong>Painel de  <mark> <security:authentication property="principal.authorities[0]"/></mark>:</strong></p>
 					</div>
 				<div class="col-12 col-sm-6 col-xl-4 mb-4">
 					<div class="card border-light shadow-sm">
