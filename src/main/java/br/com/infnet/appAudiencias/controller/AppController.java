@@ -1,30 +1,27 @@
 package br.com.infnet.appAudiencias.controller;
 
-import br.com.infnet.appAudiencias.model.negocio.Usuario;
+import br.com.infnet.appAudiencias.model.service.AudienciaService;
 import br.com.infnet.appAudiencias.model.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import br.com.infnet.appAudiencias.model.service.UsuarioService;
-
-import java.security.Principal;
 
 @Controller
-@SessionAttributes("user")
 public class AppController {
 
-	@Autowired 
-	private UsuarioService usuarioService;
+	@Autowired
+	private AudienciaService audienciaService;
 
 	@Autowired
 	private RoleService roleService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String showInit() {
+	public String showInit(Model model) {
+		model.addAttribute("naoCumpridas", audienciaService.naoCumpridas());
+		model.addAttribute("presos", audienciaService.presos());
 		return "home";
 	}
 
@@ -40,8 +37,8 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loggedIn(){
-		return showInit();
+	public String loggedIn(Model model){
+		return showInit(model);
 	}
 
 	//Metódo de autenticação anterior ao Spring Security

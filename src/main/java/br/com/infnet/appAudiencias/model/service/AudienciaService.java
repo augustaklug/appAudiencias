@@ -1,9 +1,7 @@
 package br.com.infnet.appAudiencias.model.service;
 
 import br.com.infnet.appAudiencias.model.negocio.Audiencia;
-import br.com.infnet.appAudiencias.model.negocio.Processo;
 import br.com.infnet.appAudiencias.model.repository.IAudienciaRepository;
-import br.com.infnet.appAudiencias.model.repository.IProcessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +28,8 @@ public class AudienciaService {
 	public Optional<Audiencia> obterPorId(Integer id) {
 		return audienciaRepository.findById(id);
 	}
+
+	public List<Audiencia> naoCumpridas(){return (List<Audiencia>) audienciaRepository.naoCumpridas();}
+
+	public List<Audiencia> presos(){return (List<Audiencia>) audienciaRepository.presos();}
 }

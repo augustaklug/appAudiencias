@@ -44,8 +44,8 @@
             <li role="separator" class="dropdown-divider mt-4 mb-3 border-black"></li>
             <li class="nav-item ">
                 <a href="#" class="nav-link disabled">
-                    <span class="sidebar-icon" style="color: mediumpurple"><span class="fas fa-user-shield"></span></span>
-                    <span>Administrador</span>
+                    <span class="sidebar-icon" style="color: #8bbafe"><span class="fas fa-user-shield"></span></span>
+                    <span style="color: yellow">Administrador</span>
                 </a>
             </li>
             <li class="nav-item ">
@@ -57,14 +57,14 @@
             <li class="nav-item">
                                   <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#submenu-admin">
                                     <span>
-                                      <span class="sidebar-icon" style="color: #8bbafe; visibility: hidden"><span class="fas fa-user-shield"></span></span>
+                                      <span class="sidebar-icon" style="color: #8bbafe;"><span class="fas fa-calendar-alt"></span></span>
                                       Audiências
                                     </span>
                                     <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
                                   </span>
                 <div class="multi-level collapse " role="list" id="submenu-admin" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li class="nav-item"><a class="nav-link" href="#"><span>Todas</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/listar.audiencias"><span>Todas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Cumpridas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Não cumpridas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Atrasadas</span></a></li>

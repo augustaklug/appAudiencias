@@ -2,6 +2,8 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+
 <html lang="pt-br">
 <head>
   <title>AppAudiências</title>
@@ -44,20 +46,23 @@
 					<table class="table table-hover table-striped" style="overflow-y: hidden">
 						<thead>
 						<tr>
-							<th>ID</th>
+							<th>Responsável</th>
 							<th>Processo</th>
 							<th>Data</th>
-							<th>Sala</th>
+							<th>Hora</th>
+							<th>Cumprida</th>
+							<th>Menu</th>
 						</tr>
 						</thead>
 						<tbody>
 						<!-- Item -->
-						<c:forEach var="aud" items="${listaAudiencia}">
+						<c:forEach var="aud" items="${listaAudiencias}">
 							<tr>
-								<td><span class="font-weight-normal">${aud.id}</span></td>
-								<td><span class="font-weight-normal">${aud.processo.numero}</span></td>
-								<td><span class="font-weight-normal">${aud.data}</span></td>
-								<td><span class="font-weight-normal">${aud.sala}</span></td>
+								<td><span class="font-weight-normal">${aud.responsavel.nome}</span></td>
+								<td><span class="font-weight-normal">${aud.processo}</span></td>
+								<td><span class="font-weight-normal"><fmt:formatDate type ="date" dateStyle ="short" value = "${aud.data}" /></span></td>
+								<td><span class="font-weight-normal"><fmt:formatDate type ="time" timeStyle ="short" value = "${aud.hora}" /></span></td>
+								<td><span class="font-weight-normal">${aud.cumprida? 'Sim' : 'Não'}</span></td>
 								<td>
 									<div class="btn-group">
 										<button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

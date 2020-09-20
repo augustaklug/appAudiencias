@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <html lang="pt-br" style="overflow-x: hidden">
@@ -48,14 +49,14 @@
 								<div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
 									<div class="icon icon-shape icon-md icon-shape-blue rounded mr-4 mr-sm-0"><span class="fas fa-balance-scale"></span></div>
 									<div class="d-sm-none">
-										<h2 class="h5">Processos</h2>
-										<h3 class="mb-1">10</h3>
+										<h2 class="h5">A cumprir</h2>
+										<h3 class="mb-1">${fn:length(naoCumpridas)}</h3>
 									</div>
 								</div>
 								<div class="col-12 col-xl-7 px-xl-0">
 									<div class="d-none d-sm-block">
-										<h2 class="h5">Processos</h2>
-										<h3 class="mb-1">10</h3>
+										<h2 class="h5">A cumprir</h2>
+										<h3 class="mb-1">${fn:length(naoCumpridas)}</h3>
 									</div>
 								</div>
 							</div>
@@ -69,14 +70,14 @@
 								<div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
 									<div class="icon icon-shape icon-md icon-shape-secondary rounded mr-4"><span class="fas fa-chalkboard-teacher"></span></div>
 									<div class="d-sm-none">
-										<h2 class="h5">Audiências</h2>
-										<h3 class="mb-1">15</h3>
+										<h2 class="h5">Presos</h2>
+										<h3 class="mb-1">${fn:length(presos)}</h3>
 									</div>
 								</div>
 								<div class="col-12 col-xl-7 px-xl-0">
 									<div class="d-none d-sm-block">
-										<h2 class="h5">Audiências</h2>
-										<h3 class="mb-1">15</h3>
+										<h2 class="h5">Presos</h2>
+										<h3 class="mb-1">${fn:length(presos)}</h3>
 									</div>
 								</div>
 							</div>
