@@ -3,10 +3,8 @@ package br.com.infnet.appAudiencias.model.negocio;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,24 +15,26 @@ public class Audiencia {
     private String processo;
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario responsavel;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Boolean reuPreso = false;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data;
+    @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern="HH:mm")
-    private Time hora;
+    private Date hora;
     @OneToMany(mappedBy = "audiencia")
     private List<Pessoa> participantes = new ArrayList<>();
-    private Boolean cumprida;
+    private Boolean cumprida = false;
 
     public Audiencia() {
-        this.cumprida = false;
     }
 
-    public Audiencia(String processo, Usuario responsavel, Date data, Time hora) {
+    public Audiencia(String processo, Usuario responsavel, Boolean reuPreso, Date data, Date hora) {
         this.processo = processo;
         this.responsavel = responsavel;
+        this.reuPreso = reuPreso;
         this.data = data;
         this.hora = hora;
-        this.cumprida = false;
     }
 
     public Integer getId() {
@@ -69,12 +69,20 @@ public class Audiencia {
         this.data = data;
     }
 
-    public Time getHora() {
+    public Date getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(Date hora) {
         this.hora = hora;
+    }
+
+    public Boolean getReuPreso() {
+        return reuPreso;
+    }
+
+    public void setReuPreso(Boolean reuPreso) {
+        this.reuPreso = reuPreso;
     }
 
     public List<Pessoa> getParticipantes() {

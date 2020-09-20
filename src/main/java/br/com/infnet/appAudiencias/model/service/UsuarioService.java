@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import br.com.infnet.appAudiencias.model.negocio.Usuario;
 import br.com.infnet.appAudiencias.model.repository.IUsuarioRepository;
 
+import java.util.List;
+
 @Service
 public class UsuarioService {
 	
@@ -23,4 +25,6 @@ public class UsuarioService {
 	public void incluir(Usuario usuario) {
 		usuarioRepository.save(usuario);
 	}
+
+	public List<Usuario> obterLista(){return (List<Usuario>) usuarioRepository.findAll();}
 }

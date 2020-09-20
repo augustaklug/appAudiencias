@@ -48,6 +48,12 @@
                     <span>Administrador</span>
                 </a>
             </li>
+            <li class="nav-item ">
+                <a href="/cadastro.audiencias" class="nav-link">
+                    <span class="sidebar-icon icon-success"><span class="fas fa-plus-circle"></span></span>
+                    <span>Cadastrar audiência</span>
+                </a>
+            </li>
             <li class="nav-item">
                                   <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#submenu-admin">
                                     <span>

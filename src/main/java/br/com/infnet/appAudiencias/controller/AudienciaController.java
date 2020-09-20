@@ -3,6 +3,7 @@ package br.com.infnet.appAudiencias.controller;
 import br.com.infnet.appAudiencias.model.negocio.Audiencia;
 import br.com.infnet.appAudiencias.model.service.AudienciaService;
 import br.com.infnet.appAudiencias.model.service.ProcessoService;
+import br.com.infnet.appAudiencias.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ public class AudienciaController {
     private AudienciaService audienciaService;
     @Autowired
     private ProcessoService processoService;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @RequestMapping(value = "/audiencia", method = RequestMethod.GET)
     public String showDetalhe(
@@ -28,14 +31,10 @@ public class AudienciaController {
         return "processo/lista";
     }
 
-    @RequestMapping(value = "/audienciacadastro/{id}", method = RequestMethod.GET)
-    public String cadastrarAudiencia(
-            Model model,
-            @PathVariable Integer id
-    ){
-        model.addAttribute("listaAudiencia", audienciaService.obterLista());
-        model.addAttribute("idProcesso", id);
-        return "audiencia/detalhe";
+    @RequestMapping(value = "/cadastro.audiencias", method = RequestMethod.GET)
+    public String cadastrarAudiencia(Model model){
+        model.addAttribute("listaUsuarios", usuarioService.obterLista());
+        return "audiencia/cadastro";
     }
 
     @RequestMapping(value = "/audiencias", method = RequestMethod.GET)
@@ -48,15 +47,12 @@ public class AudienciaController {
         return "audiencia/lista";
     }
 
-    @RequestMapping(value = "/audiencia", method = RequestMethod.POST)
+    @RequestMapping(value = "/cadastrar.audiencia", method = RequestMethod.POST)
     public String incluir(
-            Model model,
             Audiencia audiencia
     ) {
-
         audienciaService.incluir(audiencia);
-
-        return this.obterLista(model);
+        return "home";
     }
 
     @RequestMapping(value = "/audiencia/excluir/{id}", method = RequestMethod.GET)
