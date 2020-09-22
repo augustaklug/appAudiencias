@@ -23,19 +23,19 @@
     <ul class="nav flex-column">
         <li class="nav-item ">
             <a href="/" class="nav-link">
-                <span class="sidebar-icon" style="color: #8bbafe"><span class="fas fa-home"></span></span>
+                <span class="sidebar-icon icon-primary-app"><span class="fas fa-home"></span></span>
                 <span>Home</span>
             </a>
         </li>
         <li class="nav-item ">
             <a href="/cumprir.audiencias" class="nav-link">
-                <span class="sidebar-icon icon-success"><span class="fas fa-check-circle"></span></span>
+                <span class="sidebar-icon icon-primary-app"><span class="fas fa-user-check"></span></span>
                 <span>Cumprir audiências</span>
             </a>
         </li>
         <li class="nav-item ">
-            <a href="/" class="nav-link">
-                <span class="sidebar-icon icon-secondary"><span class="fas fa-exclamation-triangle"></span></span>
+            <a href="/audiencias.atrasadas" class="nav-link">
+                <span class="sidebar-icon icon-primary-app"><span class="fas fa-user-clock"></span></span>
                 <span>Audiências atrasadas</span>
             </a>
         </li>
@@ -44,20 +44,20 @@
             <li role="separator" class="dropdown-divider mt-4 mb-3 border-black"></li>
             <li class="nav-item ">
                 <a href="#" class="nav-link disabled">
-                    <span class="sidebar-icon" style="color: #8bbafe"><span class="fas fa-user-shield"></span></span>
-                    <span style="color: yellow">Administrador</span>
+                    <span class="sidebar-icon icon-primary-app"><span class="fas fa-user-shield"></span></span>
+                    <span>Administrador</span>
                 </a>
             </li>
             <li class="nav-item ">
                 <a href="/admin/cadastro.audiencias" class="nav-link">
-                    <span class="sidebar-icon icon-success"><span class="fas fa-plus-circle"></span></span>
+                    <span class="sidebar-icon icon-primary-app"><span class="fas fa-calendar-plus"></span></span>
                     <span>Cadastrar audiência</span>
                 </a>
             </li>
             <li class="nav-item">
                                   <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#submenu-admin">
                                     <span>
-                                      <span class="sidebar-icon" style="color: #8bbafe;"><span class="fas fa-calendar-alt"></span></span>
+                                      <span class="sidebar-icon icon-primary-app"><span class="fas fa-calendar-alt"></span></span>
                                       Audiências
                                     </span>
                                     <span class="link-arrow"><span class="fas fa-chevron-right"></span></span>
@@ -67,7 +67,7 @@
                         <li class="nav-item"><a class="nav-link" href="/admin/listar.audiencias"><span>Todas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Cumpridas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Não cumpridas</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><span>Atrasadas</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/audiencias.atrasadas"><span>Atrasadas</span></a></li>
                     </ul>
                 </div>
             </li>

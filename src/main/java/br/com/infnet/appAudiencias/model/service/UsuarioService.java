@@ -21,6 +21,8 @@ public class UsuarioService {
 	public Usuario userExist(String login) {
 		return usuarioRepository.findByLogin(login);
 	}
+
+	public Boolean notInUse(String login){return usuarioRepository.findByLogin(login) == null;}
 	
 	public void incluir(Usuario usuario) {
 		usuarioRepository.save(usuario);

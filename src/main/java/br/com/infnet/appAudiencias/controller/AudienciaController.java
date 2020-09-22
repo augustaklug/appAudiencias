@@ -54,4 +54,21 @@ public class AudienciaController {
         model.addAttribute("subtitulo", "Listagem de audiências pendentes do usuário logado");
         return "audiencia/lista";
     }
+
+    @RequestMapping(value = "/admin/audiencias.atrasadas", method = RequestMethod.GET)
+    public String listarAtrasadas(Model model){
+        model.addAttribute("listaAudiencias", audienciaService.todasAtrasadas());
+        model.addAttribute("titulo", "Audiências atrasadas");
+        model.addAttribute("subtitulo", "Audiências dos próximos 7 dias não cumpridas");
+        return "audiencia/lista";
+    }
+
+    @RequestMapping(value = "/audiencias.atrasadas", method = RequestMethod.GET)
+    public String atrasadasPorResponsavel(Model model,
+                                          @AuthenticationPrincipal Usuario responsavel){
+        model.addAttribute("listaAudiencias", audienciaService.atrasadasPorResponsavel(responsavel));
+        model.addAttribute("titulo", "Audiências atrasadas");
+        model.addAttribute("subtitulo", "Listagem de audiências pendentes do usuário logado nos próximos 7 dias");
+        return "audiencia/lista";
+    }
 }

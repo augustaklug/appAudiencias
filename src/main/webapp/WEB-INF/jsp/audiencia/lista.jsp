@@ -48,6 +48,7 @@
 						<tr>
 							<th>Responsável</th>
 							<th>Processo</th>
+							<th>Preso</th>
 							<th>Data</th>
 							<th>Hora</th>
 							<th>Cumprida</th>
@@ -60,9 +61,26 @@
 							<tr>
 								<td><span class="font-weight-normal">${aud.responsavel.nome}</span></td>
 								<td><span class="font-weight-normal">${aud.processo}</span></td>
+								<td><span class="font-weight-normal">
+													<c:if test="${aud.reuPreso == true}">
+														<span class="icon icon-sm icon-secondary">
+															<span class="fas fa-exclamation-triangle"></span>
+														</span>
+													</c:if></span></td>
 								<td><span class="font-weight-normal"><fmt:formatDate type ="date" dateStyle ="short" value = "${aud.data}" /></span></td>
 								<td><span class="font-weight-normal"><fmt:formatDate type ="time" timeStyle ="short" value = "${aud.hora}" /></span></td>
-								<td><span class="font-weight-normal">${aud.cumprida? 'Sim' : 'Não'}</span></td>
+								<td><span class="font-weight-normal">
+									<c:if test="${aud.cumprida == true}">
+										<span class="icon icon-sm icon-success">
+											<span class="fas fa-check"></span>
+										</span>
+									</c:if>
+									<c:if test="${aud.cumprida == false}">
+										<span class="icon icon-sm icon-danger">
+											<span class="fas fa-times"></span>
+										</span>
+									</c:if>
+								</span></td>
 								<td>
 									<div class="btn-group">
 										<button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -74,7 +92,7 @@
 										<div class="dropdown-menu">
 											<a class="dropdown-item text-success" href="#"><span class="far fa-check-square"></span>Cumprir</a>
 											<security:authorize access="hasRole('ADMIN')">
-											<a class="dropdown-item text-danger" href="#"><span class="fas fa-trash-alt mr-2"></span>Excluir</a>
+											<a class="dropdown-item text-danger" href="#"><span class="far fa-trash-alt"></span>Excluir</a>
 											</security:authorize>
 										</div>
 									</div>

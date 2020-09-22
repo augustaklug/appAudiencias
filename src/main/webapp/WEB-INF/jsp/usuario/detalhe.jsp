@@ -34,8 +34,8 @@
 							<h1 class="mb-0 h3">Criar uma conta</h1>
 						</div>
 						<c:if test="${not empty mensagem}">
-							<div class="col-sm-10">
-								<p class="text-danger mb-4"><strong>${mensagem}</strong></p>
+							<div class="col-sm-10 text-center">
+								<p class="text-danger mb-4"><strong>** ERRO! ${mensagem} **</strong></p>
 							</div>
 						</c:if>
 						<form action="/usuario" method="post">

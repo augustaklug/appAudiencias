@@ -35,4 +35,9 @@ public class AudienciaService {
 	public List<Audiencia> presos(){return (List<Audiencia>) audienciaRepository.presos();}
 
 	public List<Audiencia> aCumprirPorResponsavel(Usuario responsavel){return (List<Audiencia>) audienciaRepository.aCumprirPorResponsavel(responsavel);}
+
+	public List<Audiencia> todasAtrasadas(){return (List<Audiencia>) audienciaRepository.todasAtrasadas();}
+
+	public List<Audiencia> atrasadasPorResponsavel(Usuario responsavel){return (List<Audiencia>) audienciaRepository.atrasadasPorResponsavel(responsavel);}
+
 }

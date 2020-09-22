@@ -25,19 +25,27 @@ public class UsuarioController {
 	private RoleService roleService;
 
 	@Autowired
+	private AppController appController;
+
+	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@RequestMapping(value = "/usuario", method = RequestMethod.POST)
 	public String incluir(
 				Usuario usuario,
+				Model model,
 				@RequestParam("acesso") String acesso
 			) {
-		System.out.println(acesso);
-		usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
-		Role userRole = roleService.obterPorNome(acesso);
-		usuario.setRoles(Arrays.asList(userRole));
-		usuarioService.incluir(usuario);
-		
-		return "login";
-	}	
+		if(usuarioService.notInUse(usuario.getLogin())){
+			usuario.setSenha(bCryptPasswordEncoder.encode(usuario.getSenha()));
+			Role userRole = roleService.obterPorNome(acesso);
+			usuario.setRoles(Arrays.asList(userRole));
+			usuarioService.incluir(usuario);
+
+			return "login";
+	}	else{
+			model.addAttribute("mensagem", "O login '"+usuario.getLogin()+"' já está em uso.");
+			return appController.cadastrar(model);
+		}
+	}
 }

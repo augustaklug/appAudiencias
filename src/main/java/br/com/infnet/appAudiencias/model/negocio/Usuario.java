@@ -13,6 +13,7 @@ public class Usuario implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@Column(unique = true)
 	private String login;
 	private String nome;
 	private String senha;

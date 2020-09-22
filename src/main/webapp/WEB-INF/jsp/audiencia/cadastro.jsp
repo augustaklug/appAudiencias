@@ -47,7 +47,7 @@
 				</div>
 				<form action="/admin/cadastrar.audiencia" method="post">
 				<div class="row">
-					<div class="col-8 mb-1">
+					<div class="col-12 mb-1">
 						<div class="card border-light shadow-sm components-section">
 							<div class="card-body">
 								<div class="row mb-1 mt-3">

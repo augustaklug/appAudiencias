@@ -20,4 +20,9 @@ public interface IAudienciaRepository extends CrudRepository<Audiencia, Integer>
     @Query("from Audiencia a where a.responsavel =:responsavel and a.cumprida =false")
     List<Audiencia> aCumprirPorResponsavel(Usuario responsavel);
 
+    @Query("from Audiencia a where a.data <= current_date + 7 and a.cumprida =false")
+    List<Audiencia> todasAtrasadas();
+
+    @Query("from Audiencia a where a.data <= current_date + 7 and a.responsavel =:responsavel and a.cumprida =false")
+    List<Audiencia> atrasadasPorResponsavel(Usuario responsavel);
 }
