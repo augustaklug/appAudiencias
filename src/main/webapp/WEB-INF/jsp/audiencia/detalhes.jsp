@@ -103,6 +103,7 @@
 										</tbody>
 									</table>
 									<div class="mt-4">
+										<c:if test="${audiencia.cumprida == false}">
 										<%--Botão--%>
 										<button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#modal-default">Cadastrar novo</button>
 										<%--Modal--%>
@@ -142,6 +143,7 @@
 											</div>
 										</div>
 										<%--Fim do modal--%>
+										</c:if>
 									</div>
 
 								</div>

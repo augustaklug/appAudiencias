@@ -90,7 +90,12 @@
 											<span class="sr-only">Abrir menu</span>
 										</button>
 										<div class="dropdown-menu">
+											<c:if test="${aud.cumprida == false}">
 											<a class="dropdown-item text-success" href="/detalhes/${aud.id}"><span class="far fa-check-square"></span>Cumprir</a>
+											</c:if>
+											<c:if test="${aud.cumprida == true}">
+												<a class="dropdown-item text-info" href="/detalhes/${aud.id}"><span class="far fa-eye"></span>Visualizar</a>
+											</c:if>
 											<security:authorize access="hasRole('ADMIN')">
 											<a class="dropdown-item text-danger" href="/admin/excluir.audiencia/${aud.id}"><span class="far fa-trash-alt"></span>Excluir</a>
 											</security:authorize>

@@ -38,6 +38,7 @@
 				<!--Fim do menu superior-->
 
 				<div class="py-4">
+					<div class="text-success mb-3"><h6 class="font-weight-bolder" >${mensagem}</h6></div>
 					<div class="d-flex justify-content-between w-100 flex-wrap">
 						<div class="mb-3 mb-lg-0">
 							<h1 class="h4">Cadastrar uma audiência</h1>
