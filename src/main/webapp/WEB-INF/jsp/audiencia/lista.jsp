@@ -38,8 +38,8 @@
 				<!--Fim do menu superior-->
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
 					<div class="d-block mb-4 mb-md-0">
-						<h2 class="h4">Listagem de audiências</h2>
-						<p class="mb-0">Todas as audiêncas cadastradas no sistema.</p>
+						<h2 class="h4">${titulo}</h2>
+						<p class="mb-0"><em>${subtitulo}</em></p>
 					</div>
 				</div>
 				<div class="card card-body border-light shadow-sm table-wrapper table-responsive pt-0" style="overflow-y: hidden">
@@ -72,9 +72,10 @@
 											<span class="sr-only">Abrir menu</span>
 										</button>
 										<div class="dropdown-menu">
-											<a class="dropdown-item" href="#"><span class="fas fa-eye mr-2"></span>Detalhes</a>
-											<a class="dropdown-item" href="#"><span class="fas fa-edit mr-2"></span>Editar</a>
-											<a class="dropdown-item text-danger" href="/audiencia/excluir/${aud.id}"><span class="fas fa-trash-alt mr-2"></span>Excluir</a>
+											<a class="dropdown-item text-success" href="#"><span class="far fa-check-square"></span>Cumprir</a>
+											<security:authorize access="hasRole('ADMIN')">
+											<a class="dropdown-item text-danger" href="#"><span class="fas fa-trash-alt mr-2"></span>Excluir</a>
+											</security:authorize>
 										</div>
 									</div>
 								</td>

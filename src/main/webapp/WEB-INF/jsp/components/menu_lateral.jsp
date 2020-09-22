@@ -28,7 +28,7 @@
             </a>
         </li>
         <li class="nav-item ">
-            <a href="/" class="nav-link">
+            <a href="/cumprir.audiencias" class="nav-link">
                 <span class="sidebar-icon icon-success"><span class="fas fa-check-circle"></span></span>
                 <span>Cumprir audiências</span>
             </a>
@@ -49,7 +49,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-                <a href="/cadastro.audiencias" class="nav-link">
+                <a href="/admin/cadastro.audiencias" class="nav-link">
                     <span class="sidebar-icon icon-success"><span class="fas fa-plus-circle"></span></span>
                     <span>Cadastrar audiência</span>
                 </a>
@@ -64,7 +64,7 @@
                                   </span>
                 <div class="multi-level collapse " role="list" id="submenu-admin" aria-expanded="false">
                     <ul class="flex-column nav">
-                        <li class="nav-item"><a class="nav-link" href="/listar.audiencias"><span>Todas</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/listar.audiencias"><span>Todas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Cumpridas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Não cumpridas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><span>Atrasadas</span></a></li>

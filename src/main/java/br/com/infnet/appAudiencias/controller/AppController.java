@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 public class AppController {
@@ -40,6 +39,9 @@ public class AppController {
 	public String loggedIn(Model model){
 		return showInit(model);
 	}
+
+	@RequestMapping(value = "/acessoNegado", method = RequestMethod.GET)
+	public String acessoNegado(){return "acessoNegado";}
 
 	//Metódo de autenticação anterior ao Spring Security
 	/*

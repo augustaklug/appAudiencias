@@ -1,6 +1,7 @@
 package br.com.infnet.appAudiencias.model.repository;
 
 import br.com.infnet.appAudiencias.model.negocio.Audiencia;
+import br.com.infnet.appAudiencias.model.negocio.Usuario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -15,5 +16,8 @@ public interface IAudienciaRepository extends CrudRepository<Audiencia, Integer>
 
     @Query("from Audiencia a where a.reuPreso =true")
     List<Audiencia> presos();
+
+    @Query("from Audiencia a where a.responsavel =:responsavel and a.cumprida =false")
+    List<Audiencia> aCumprirPorResponsavel(Usuario responsavel);
 
 }

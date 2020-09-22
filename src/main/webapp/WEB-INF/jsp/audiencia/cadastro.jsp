@@ -45,46 +45,23 @@
 						</div>
 					</div>
 				</div>
-				<form action="/cadastrar.audiencia" method="post">
+				<form action="/admin/cadastrar.audiencia" method="post">
 				<div class="row">
-					<div class="col-12 mb-4">
+					<div class="col-8 mb-1">
 						<div class="card border-light shadow-sm components-section">
 							<div class="card-body">
-								<div class="row mb-4">
-									<div class="col-lg-4 col-sm-6">
+								<div class="row mb-1 mt-3">
+									<div class="col-lg-6 col-sm-6">
 
 										<!-- Form -->
 										<div class="mb-3">
 											<label for="autos">Número dos autos</label>
 											<div class="input-group">
 												<span class="input-group-text" id="basic-addon1"><span class="far fa-sticky-note"></span></span>
-												<input type="text" class="form-control" id="autos" name="processo" placeholder="Autos nº">
+												<input type="text" class="form-control" id="autos" name="processo" placeholder="Autos nº" required>
 											</div>
 										</div>
 										<!-- End of Form -->
-										<!-- Form -->
-										<div class="mb-4">
-											<label class="my-1 mr-2" for="responsavel">Responsável</label>
-											<select class="form-select" id="responsavel" name="responsavel.login">
-												<c:forEach var="u" items="${listaUsuarios}">
-													<option value="${u.login}">${u.nome}</option>
-												</c:forEach>
-											</select>
-										</div>
-										<!-- End of Form -->
-										<div class="mb-3">
-											<span class="sidebar-icon icon-danger"><span class="fas fa-exclamation"></span></span> <span class="h6 font-weight-bold">Réu preso</span>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="true" id="preso" name="reuPreso">
-											<label class="form-check-label" for="preso">
-												Sim
-											</label>
-										</div>
-									</div>
-									</div>
-
-									<div class="col-lg-4 col-sm-6">
 										<div class="mb-3">
 											<label for="data">Data</label>
 											<div class="input-group">
@@ -93,14 +70,35 @@
 											</div>
 										</div>
 
+										<div class="form-check form-switch pt-2 mb-3">
+											<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="true" name="reuPreso">
+											<label class="form-check-label" for="flexSwitchCheckDefault">Réu preso</label>
+										</div>
+									</div>
+
+									<div class="col-lg-6 col-sm-6">
+
+										<!-- Form -->
+										<div class="mb-3">
+											<label class="my-1 mr-2" for="responsavel">Responsável</label>
+											<select class="form-select" id="responsavel" name="responsavel.login" required>
+												<c:forEach var="u" items="${listaUsuarios}">
+													<option value="${u.login}">${u.nome}</option>
+												</c:forEach>
+											</select>
+										</div>
+										<!-- End of Form -->
+
 										<div class="mb-3">
 											<label for="hora">Hora</label>
 											<div class="input-group">
-												<span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+												<span class="input-group-text"><span class="far fa-clock"></span></span>
 												<input class="form-control" id="hora" name="hora" type="time" placeholder="HH:mm" required>
 											</div>
 										</div>
 									</div>
+									<button class="btn btn-block mb-2 mr-2 btn-secondary" type="submit"><i class="fas fa-check mr-2"></i>Cadastrar</button>
+
 								</div>
 								<div class="row mb-5 mb-lg-5">
 
@@ -112,7 +110,6 @@
 						</div>
 					</div>
 				</div>
-					<button type="submit">Cadastrar</button>
 				</form>
 
 				<c:import url="../components/footer.jsp"/>
