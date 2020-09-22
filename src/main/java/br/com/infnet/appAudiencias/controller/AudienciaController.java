@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AudienciaController {
@@ -70,5 +73,20 @@ public class AudienciaController {
         model.addAttribute("titulo", "Audiências atrasadas");
         model.addAttribute("subtitulo", "Listagem de audiências pendentes do usuário logado nos próximos 7 dias");
         return "audiencia/lista";
+    }
+
+    @RequestMapping(value = "/detalhes/{id}", method = RequestMethod.GET)
+    public String detalharAudiencia(Model model,
+                                    @PathVariable Integer id){
+        model.addAttribute("audiencia", audienciaService.obterPorId(id));
+        return "audiencia/detalhes";
+    }
+
+    @RequestMapping(value = "/admin/excluir.audiencia/{id}", method = RequestMethod.GET)
+    public String excluirAudiencia(@PathVariable Integer id,
+                                   HttpServletRequest request){
+        String referer = request.getHeader("Referer");
+        audienciaService.excluir(id);
+        return "redirect:"+referer;
     }
 }

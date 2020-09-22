@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<div class="card card-body border-light shadow-sm table-wrapper table-responsive pt-0" style="overflow-y: hidden">
-					<table class="table table-hover table-striped" style="overflow-y: hidden">
+					<table class="table table-hover table-striped text-center" style="overflow-y: hidden">
 						<thead>
 						<tr>
 							<th>Responsável</th>
@@ -52,7 +52,7 @@
 							<th>Data</th>
 							<th>Hora</th>
 							<th>Cumprida</th>
-							<th>Menu</th>
+							<th>Ações</th>
 						</tr>
 						</thead>
 						<tbody>
@@ -90,9 +90,9 @@
 											<span class="sr-only">Abrir menu</span>
 										</button>
 										<div class="dropdown-menu">
-											<a class="dropdown-item text-success" href="#"><span class="far fa-check-square"></span>Cumprir</a>
+											<a class="dropdown-item text-success" href="/detalhes/${aud.id}"><span class="far fa-check-square"></span>Cumprir</a>
 											<security:authorize access="hasRole('ADMIN')">
-											<a class="dropdown-item text-danger" href="#"><span class="far fa-trash-alt"></span>Excluir</a>
+											<a class="dropdown-item text-danger" href="/admin/excluir.audiencia/${aud.id}"><span class="far fa-trash-alt"></span>Excluir</a>
 											</security:authorize>
 										</div>
 									</div>

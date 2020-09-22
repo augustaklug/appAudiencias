@@ -18,16 +18,14 @@ public class AudienciaService {
 		audienciaRepository.save(audiencia);
 	}
 
+	public Audiencia obterPorId(Integer id){return audienciaRepository.obterPorId(id);}
+
 	public void excluir(Integer id) {
 		audienciaRepository.deleteById(id);
 	}
 
 	public List<Audiencia> obterLista(){
-		return (List<Audiencia>) audienciaRepository.findAll();
-	}
-
-	public Optional<Audiencia> obterPorId(Integer id) {
-		return audienciaRepository.findById(id);
+		return (List<Audiencia>) audienciaRepository.ordenadasPorData();
 	}
 
 	public List<Audiencia> naoCumpridas(){return (List<Audiencia>) audienciaRepository.naoCumpridas();}
