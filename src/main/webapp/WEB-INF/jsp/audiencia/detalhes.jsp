@@ -70,7 +70,7 @@
 												</p>
 												<c:if test="${audiencia.cumprida == false}">
 													<div class="mt-3 mb-3">
-														<form action="#" method="post">
+														<form action="/detalhes/verifica/${audiencia.id}" method="post">
 															<a><button class="btn btn-gray" type="submit">Verificar cumprimento</button></a>
 														</form>
 													</div>
@@ -91,58 +91,95 @@
 										<tr>
 											<th>Nome</th>
 											<th>Telefone</th>
-											<th>Intimada</th>
+											<th>Intimado</th>
+											<th>Ações</th>
 										</tr>
 										</thead>
 										<tbody>
-										<tr>
-											<td>ABC</td>
-											<td>123</td>
-											<td>Não</td>
-										</tr>
+										<c:forEach var="pessoa" items="${participantes}">
+											<tr>
+												<td class="font-weight-bolder">${pessoa.nome}</td>
+												<td>${pessoa.telefone}</td>
+												<td>
+													<c:if test="${pessoa.intimada == true}">
+										<span class="icon icon-sm icon-success">
+											<span class="far fa-check-circle font-weight-bolder"></span>
+										</span>
+													</c:if>
+													<c:if test="${pessoa.intimada == false}">
+										<span class="icon icon-sm icon-danger">
+											<span class="far fa-times-circle font-weight-bolder"></span>
+										</span>
+													</c:if>
+												</td>
+												<td>
+													<div class="btn-group">
+														<button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<span class="icon icon-sm">
+															<span class="fas fa-ellipsis-h icon-dark"></span>
+														</span>
+															<span class="sr-only">Abrir menu</span>
+														</button>
+														<div class="dropdown-menu">
+															<c:if test="${pessoa.intimada == false}">
+																<a class="dropdown-item" href="#"><span class="fas fa-edit"></span>Editar</a>
+																<a class="dropdown-item text-success" href="#"><span class="far fa-check-square"></span>Intimar</a>
+															</c:if>
+															<c:if test="${pessoa.intimada == true}">
+																<a class="dropdown-item text-info" href=""><span class="far fa-eye"></span>Visualizar</a>
+															</c:if>
+															<form action="/excluir.pessoa/${pessoa.id}" method="post">
+																<button type="submit" class="dropdown-item text-danger"><span class="far fa-trash-alt"></span>Excluir</button>
+															</form>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</c:forEach>
 										</tbody>
 									</table>
 									<div class="mt-4">
 										<c:if test="${audiencia.cumprida == false}">
-										<%--Botão--%>
-										<button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#modal-default">Cadastrar novo</button>
-										<%--Modal--%>
-										<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
-											<div class="modal-dialog modal-dialog-centered" role="document">
-												<div class="modal-content">
-													<%--Header--%>
-													<div class="modal-header">
-														<h2 class="h6 modal-title">Cadastro de participante</h2>
-													</div>
-													<%--Corpo--%>
-													<div class="modal-body">
-														<form action="#" method="post">
-															<%--Nome--%>
-															<div class="mb-3">
-																<label for="nome">Nome</label>
-																<div class="input-group">
-																	<span class="input-group-text" id="basic-addon1"><span class="fas fa-user"></span></span>
-																	<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
+											<%--Botão do modal--%>
+											<button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#modal-default">Cadastrar novo</button>
+											<%--Modal--%>
+											<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+												<div class="modal-dialog modal-dialog-centered" role="document">
+													<div class="modal-content">
+															<%--Header--%>
+														<div class="modal-header">
+															<h2 class="h6 modal-title">Cadastro de participante</h2>
+														</div>
+															<%--Corpo--%>
+														<div class="modal-body">
+															<form action="/cadastrar.participante" method="post">
+																<input type="text" hidden name="audiencia.id" value="${audiencia.id}">
+																	<%--Nome--%>
+																<div class="mb-3">
+																	<label for="nome">Nome</label>
+																	<div class="input-group">
+																		<span class="input-group-text" id="basic-addon1"><span class="fas fa-user"></span></span>
+																		<input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+																	</div>
 																</div>
-															</div>
-															<%--Telefone--%>
-															<div class="mb-3">
-																<label for="telefone">Telefone</label>
-																<div class="input-group">
-																	<span class="input-group-text" id="basic-addon2"><span class="fas fa-phone"></span></span>
-																	<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone">
+																	<%--Telefone--%>
+																<div class="mb-3">
+																	<label for="telefone">Telefone</label>
+																	<div class="input-group">
+																		<span class="input-group-text" id="basic-addon2"><span class="fas fa-phone"></span></span>
+																		<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" required>
+																	</div>
 																</div>
-															</div>
-															<span class="modal-footer">
+																<span class="modal-footer">
 															<button type="submit" class="btn btn-md btn-secondary">Cadastrar</button>
 																<button type="button" class="btn btn-link text-danger ml-auto" data-dismiss="modal">Cancelar</button>
 																	</span>
-														</form>
+															</form>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<%--Fim do modal--%>
+											<%--Fim do modal--%>
 										</c:if>
 									</div>
 

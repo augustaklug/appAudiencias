@@ -97,7 +97,9 @@
 												<a class="dropdown-item text-info" href="/detalhes/${aud.id}"><span class="far fa-eye"></span>Visualizar</a>
 											</c:if>
 											<security:authorize access="hasRole('ADMIN')">
-											<a class="dropdown-item text-danger" href="/admin/excluir.audiencia/${aud.id}"><span class="far fa-trash-alt"></span>Excluir</a>
+												<form action="/admin/excluir.audiencia/${aud.id}" method="post">
+											<button type="submit" class="dropdown-item text-danger" href="/admin/excluir.audiencia/${aud.id}"><span class="far fa-trash-alt"></span>Excluir</button>
+												</form>
 											</security:authorize>
 										</div>
 									</div>

@@ -3,6 +3,7 @@ package br.com.infnet.appAudiencias.controller;
 import br.com.infnet.appAudiencias.model.negocio.Audiencia;
 import br.com.infnet.appAudiencias.model.negocio.Usuario;
 import br.com.infnet.appAudiencias.model.service.AudienciaService;
+import br.com.infnet.appAudiencias.model.service.PessoaService;
 import br.com.infnet.appAudiencias.model.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.awt.*;
 
 @Controller
 public class AudienciaController {
@@ -27,6 +29,9 @@ public class AudienciaController {
 
     @Autowired
     private AppController appController;
+
+    @Autowired
+    private PessoaService pessoaService;
 
     @RequestMapping(value = "/admin/cadastro.audiencias", method = RequestMethod.GET)
     public String cadastrarAudiencia(Model model){
@@ -78,18 +83,44 @@ public class AudienciaController {
         return "audiencia/lista";
     }
 
+    @RequestMapping(value = "/admin/audiencias.nao.cumpridas", method = RequestMethod.GET)
+    public String naoCumpridas(Model model){
+        model.addAttribute("listaAudiencias", audienciaService.naoCumpridas());
+        model.addAttribute("titulo", "Audiências não cumpridas");
+        model.addAttribute("subtitulo", "Listagem de todas as audiências não cumpridas");
+        return "audiencia/lista";
+    }
+
+    @RequestMapping(value = "/admin/audiencias.cumpridas", method = RequestMethod.GET)
+    public String cumpridas(Model model){
+        model.addAttribute("listaAudiencias", audienciaService.cumpridas());
+        model.addAttribute("titulo", "Audiências cumpridas");
+        model.addAttribute("subtitulo", "Listagem de todas as audiências cumpridas");
+        return "audiencia/lista";
+    }
+
     @RequestMapping(value = "/detalhes/{id}", method = RequestMethod.GET)
     public String detalharAudiencia(Model model,
                                     @PathVariable Integer id){
         model.addAttribute("audiencia", audienciaService.obterPorId(id));
+        model.addAttribute("participantes", pessoaService.participantesPorId(id));
         return "audiencia/detalhes";
     }
 
-    @RequestMapping(value = "/admin/excluir.audiencia/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/excluir.audiencia/{id}", method = RequestMethod.POST)
     public String excluirAudiencia(@PathVariable Integer id,
                                    HttpServletRequest request){
         String referer = request.getHeader("Referer");
         audienciaService.excluir(id);
+        return "redirect:"+referer;
+    }
+
+    @RequestMapping(value = "/detalhes/verifica/{id}", method = RequestMethod.POST)
+    public String verificaCumprimento(@PathVariable Integer id,
+                                      HttpServletRequest request
+                                      ){
+        String referer = request.getHeader("Referer");
+        audienciaService.verificar(id);
         return "redirect:"+referer;
     }
 }

@@ -65,9 +65,9 @@
                 <div class="multi-level collapse " role="list" id="submenu-admin" aria-expanded="false">
                     <ul class="flex-column nav">
                         <li class="nav-item"><a class="nav-link" href="/admin/listar.audiencias"><span>Todas</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><span>Cumpridas</span></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><span>Não cumpridas</span></a></li>
                         <li class="nav-item"><a class="nav-link" href="/admin/audiencias.atrasadas"><span>Atrasadas</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/audiencias.cumpridas"><span>Cumpridas</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/audiencias.nao.cumpridas"><span>Não cumpridas</span></a></li>
                     </ul>
                 </div>
             </li>

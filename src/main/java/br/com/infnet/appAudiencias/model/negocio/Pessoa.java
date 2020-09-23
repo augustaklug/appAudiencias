@@ -11,18 +11,16 @@ public class Pessoa {
     private String telefone;
     @ManyToOne(fetch = FetchType.LAZY)
     private Audiencia audiencia;
-    private Boolean intimada;
+    private Boolean intimada = false;
     @OneToOne(cascade = CascadeType.DETACH)
     private Intimacao intimacao;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String telefone, Boolean intimada, Intimacao intimacao) {
+    public Pessoa(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
-        this.intimada = intimada;
-        this.intimacao = intimacao;
     }
 
     public Integer getId() {

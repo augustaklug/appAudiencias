@@ -11,6 +11,9 @@ import java.util.List;
 @Repository
 public interface IAudienciaRepository extends CrudRepository<Audiencia, Integer> {
 
+    @Query("from Audiencia a where a.cumprida =true ORDER BY a.data")
+    List<Audiencia> cumpridas();
+
     @Query("from Audiencia a where a.cumprida =false ORDER BY a.data")
     List<Audiencia> naoCumpridas();
 
@@ -31,4 +34,5 @@ public interface IAudienciaRepository extends CrudRepository<Audiencia, Integer>
 
     @Query("from Audiencia a where a.id =:id")
     Audiencia obterPorId(Integer id);
+
 }

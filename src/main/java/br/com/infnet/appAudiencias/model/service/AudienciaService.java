@@ -24,11 +24,21 @@ public class AudienciaService {
 		audienciaRepository.deleteById(id);
 	}
 
+	public void verificar(Integer id){
+		Audiencia a = audienciaRepository.obterPorId(id);
+		if(a.verificaCumprimento()){
+			a.setCumprida(true);
+			audienciaRepository.save(a);
+		}
+	}
+
 	public List<Audiencia> obterLista(){
 		return (List<Audiencia>) audienciaRepository.ordenadasPorData();
 	}
 
 	public List<Audiencia> naoCumpridas(){return (List<Audiencia>) audienciaRepository.naoCumpridas();}
+
+	public List<Audiencia> cumpridas(){return (List<Audiencia>) audienciaRepository.cumpridas();}
 
 	public List<Audiencia> presos(){return (List<Audiencia>) audienciaRepository.presos();}
 

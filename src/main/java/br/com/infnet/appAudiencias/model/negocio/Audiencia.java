@@ -122,4 +122,17 @@ public class Audiencia {
         participantes.remove(pessoa);
         pessoa.setAudiencia(null);
     }
+
+    public Boolean verificaCumprimento(){
+        boolean cumprida = true;
+        if(this.getParticipantes().isEmpty()){
+            cumprida = false;
+        }
+        for (Pessoa pessoa : this.getParticipantes()) {
+            if(!pessoa.getIntimada()){
+                cumprida = false;
+            }
+        }
+        return cumprida;
+    }
 }
