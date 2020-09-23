@@ -30,12 +30,12 @@
 
 				<div class="col-12 d-flex align-items-center justify-content-center">
 					<div class="signin-inner my-3 my-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-						<div class="text-center text-md-center mb-4 mt-md-0">
+						<div class="text-center text-md-center mb-2 mt-md-0">
 							<h1 class="mb-0 h3">Criar uma conta</h1>
 						</div>
 						<c:if test="${not empty mensagem}">
-							<div class="col-sm-10 text-center">
-								<p class="text-danger mb-4"><strong>** ERRO! ${mensagem} **</strong></p>
+							<div class="alert text-center" role="alert" style="background: #f8d7da">
+								<span style="color: darkred" class="font-weight-bold">** ERRO! ${mensagem}**</span>
 							</div>
 						</c:if>
 						<form action="/usuario" method="post">
