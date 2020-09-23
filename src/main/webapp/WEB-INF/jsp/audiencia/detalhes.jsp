@@ -55,7 +55,7 @@
 											<h6 class="card-subtitle mb-3 text-muted">Responsável: <span class="font-weight-bolder">${audiencia.responsavel.nome}</span></h6>
 											<div class="mt-3">
 												<p class="mb-2"><strong>Data: </strong><fmt:formatDate type ="date" dateStyle ="short" value = "${audiencia.data}" /></p>
-												<p class="mb-2"><strong>Hora: </strong><fmt:formatDate type ="time" timeStyle ="short" value = "${audiencia.hora}" /></p>
+												<p class="mb-2"><strong>Hora: </strong>${audiencia.hora}</p>
 												<p class="mb-2"><strong>Cumprida: </strong>
 													<c:if test="${audiencia.cumprida == true}">
 										<span class="icon icon-sm icon-success">

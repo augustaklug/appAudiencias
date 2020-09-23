@@ -1,8 +1,12 @@
 package br.com.infnet.appAudiencias.model.negocio;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,17 +23,17 @@ public class Audiencia {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data;
-    @Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern="HH:mm")
-    private Date hora;
-    @OneToMany(mappedBy = "audiencia")
+    @JsonDeserialize(using = LocalTimeDeserializer.class)
+    private LocalTime hora;
+    @OneToMany(mappedBy = "audiencia", orphanRemoval = true)
     private List<Pessoa> participantes = new ArrayList<>();
     private Boolean cumprida = false;
 
     public Audiencia() {
     }
 
-    public Audiencia(String processo, Usuario responsavel, Boolean reuPreso, Date data, Date hora) {
+    public Audiencia(String processo, Usuario responsavel, Boolean reuPreso, Date data, LocalTime hora) {
         this.processo = processo;
         this.responsavel = responsavel;
         this.reuPreso = reuPreso;
@@ -69,11 +73,11 @@ public class Audiencia {
         this.data = data;
     }
 
-    public Date getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 

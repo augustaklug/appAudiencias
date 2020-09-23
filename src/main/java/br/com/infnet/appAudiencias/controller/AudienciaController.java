@@ -9,14 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.awt.*;
 
 @Controller
 public class AudienciaController {
@@ -39,6 +34,19 @@ public class AudienciaController {
         return "audiencia/cadastro";
     }
 
+    @RequestMapping(value = "/admin/cadastro.audiencias", method = RequestMethod.POST)
+    public String cadastrarAudienciaAPI(Model model,
+                                        @RequestParam("processoAPI") String processo,
+                                        @RequestParam("dataAPI") String data,
+                                        @RequestParam("horaAPI") String hora)
+                                        {
+        model.addAttribute("listaUsuarios", usuarioService.obterLista());
+        model.addAttribute("processoAPI", processo);
+        model.addAttribute("dataAPI", data);
+        model.addAttribute("horaAPI", hora);
+        return "audiencia/cadastroAPI";
+    }
+
     @RequestMapping(value = "/admin/cadastrar.audiencia", method = RequestMethod.POST)
     public String incluir(
             Audiencia audiencia,
@@ -55,6 +63,12 @@ public class AudienciaController {
         model.addAttribute("titulo", "Listagem de audiências");
         model.addAttribute("subtitulo", "Todas as audiências cadastradas no sistema");
         return "audiencia/lista";
+    }
+
+    @RequestMapping(value = "/admin/api.audiencias", method = RequestMethod.GET)
+    public String listarAPI(Model model){
+        model.addAttribute("listaAudiencias", audienciaService.filtrarAPI());
+        return "audiencia/listagemcadastro";
     }
 
     @RequestMapping(value = "/cumprir.audiencias", method = RequestMethod.GET)

@@ -48,10 +48,16 @@
                     <span>Administrador</span>
                 </a>
             </li>
-            <li class="nav-item ">
+            <%--<li class="nav-item ">
                 <a href="/admin/cadastro.audiencias" class="nav-link">
                     <span class="sidebar-icon icon-primary-app"><span class="fas fa-calendar-plus"></span></span>
                     <span>Cadastrar audiência</span>
+                </a>
+            </li>--%>
+            <li class="nav-item ">
+                <a href="/admin/api.audiencias" class="nav-link">
+                    <span class="sidebar-icon icon-primary-app"><span class="fas fa-calendar-plus"></span></span>
+                    <span>Cadastrar audiências</span>
                 </a>
             </li>
             <li class="nav-item">
