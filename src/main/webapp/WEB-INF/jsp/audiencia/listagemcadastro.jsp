@@ -36,6 +36,11 @@
 				<!--Menu superior-->
 					<c:import url="../components/menu_superior.jsp"/>
 				<!--Fim do menu superior-->
+				<c:if test="${not empty mensagem}">
+					<div class="alert" role="alert" style="background: #d4edda">
+						<span style="color: #4f8162" class="font-weight-bold">${mensagem}</span>
+					</div>
+				</c:if>
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
 					<div class="d-block mb-4 mb-md-0">
 						<h2 class="h4">Audiências a cadastrar</h2>

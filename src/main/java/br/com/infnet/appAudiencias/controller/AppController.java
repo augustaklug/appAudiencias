@@ -1,8 +1,10 @@
 package br.com.infnet.appAudiencias.controller;
 
+import br.com.infnet.appAudiencias.model.negocio.Usuario;
 import br.com.infnet.appAudiencias.model.service.AudienciaService;
 import br.com.infnet.appAudiencias.model.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +20,13 @@ public class AppController {
 	private RoleService roleService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String showInit(Model model) {
-		model.addAttribute("naoCumpridas", audienciaService.naoCumpridas());
+	public String showInit(Model model,
+						   @AuthenticationPrincipal Usuario responsavel) {
+		model.addAttribute("todasAtrasadas", audienciaService.todasAtrasadas());
 		model.addAttribute("presos", audienciaService.presos());
+		model.addAttribute("aCadastrar", audienciaService.obterListaAPI());
+		model.addAttribute("porResponsavel", audienciaService.aCumprirPorResponsavel(responsavel));
+		model.addAttribute("atrasadasDoUsuario", audienciaService.atrasadasPorResponsavel(responsavel));
 		return "home";
 	}
 
@@ -36,8 +42,8 @@ public class AppController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loggedIn(Model model){
-		return showInit(model);
+	public String loggedIn(Model model, @AuthenticationPrincipal Usuario usuario){
+		return showInit(model, usuario);
 	}
 
 	@RequestMapping(value = "/acessoNegado", method = RequestMethod.GET)

@@ -7,8 +7,8 @@
 
 <html lang="pt-br" style="overflow-x: hidden">
 <head>
-  <title>AppAudiências</title>
-  <meta charset="utf-8">
+	<title>AppAudiências</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 	<!--FavIcons-->
@@ -35,73 +35,22 @@
 
 			<main class="content">
 				<!--Menu superior-->
-					<c:import url="components/menu_superior.jsp"/>
+				<c:import url="components/menu_superior.jsp"/>
 				<!--Fim do menu superior-->
 
 				<div class="row justify-content-md-center">
 					<div class="ml-3 mb-4">
 						<p class="lead"><strong>Painel de  <mark> <security:authentication property="principal.authorities[0]"/></mark>:</strong></p>
 					</div>
-				<div class="col-12 col-sm-6 col-xl-4 mb-4">
-					<div class="card border-light shadow-sm">
-						<div class="card-body">
-							<div class="row d-block d-xl-flex align-items-center">
-								<div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-									<div class="icon icon-shape icon-md icon-shape-blue rounded mr-4 mr-sm-0"><span class="fas fa-balance-scale"></span></div>
-									<div class="d-sm-none">
-										<h2 class="h5">A cumprir</h2>
-										<h3 class="mb-1">${fn:length(naoCumpridas)}</h3>
-									</div>
-								</div>
-								<div class="col-12 col-xl-7 px-xl-0">
-									<div class="d-none d-sm-block">
-										<h2 class="h5">A cumprir</h2>
-										<h3 class="mb-1">${fn:length(naoCumpridas)}</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<%--Cards da tela inicial--%>
+					<security:authorize access="hasRole('ADMIN')">
+						<c:import url="components/home_admin.jsp"/>
+					</security:authorize>
+					<security:authorize access="hasRole('USER')">
+						<c:import url="components/home_user.jsp"/>
+					</security:authorize>
 				</div>
-				<div class="col-12 col-sm-6 col-xl-4 mb-4">
-					<div class="card border-light shadow-sm">
-						<div class="card-body">
-							<div class="row d-block d-xl-flex align-items-center">
-								<div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-									<div class="icon icon-shape icon-md icon-shape-secondary rounded mr-4"><span class="fas fa-chalkboard-teacher"></span></div>
-									<div class="d-sm-none">
-										<h2 class="h5">Presos</h2>
-										<h3 class="mb-1">${fn:length(presos)}</h3>
-									</div>
-								</div>
-								<div class="col-12 col-xl-7 px-xl-0">
-									<div class="d-none d-sm-block">
-										<h2 class="h5">Presos</h2>
-										<h3 class="mb-1">${fn:length(presos)}</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-sm-6 col-xl-4 mb-4">
-					<div class="card border-light shadow-sm" style="display: none">
-						<div class="card-body">
-							<div class="row d-block d-xl-flex align-items-center">
-								<div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-									<div class="ct-chart-traffic-share ct-golden-section ct-series-a"></div>
-								</div>
-								<div class="col-12 col-xl-7 px-xl-0">
-									<h2 class="h5 mb-3">Traffic Share</h2>
-									<h6 class="font-weight-normal text-gray"><span class="icon w-20 icon-xs icon-secondary mr-1"><span class="fas fa-desktop"></span></span> Desktop <a href="#" class="h6">60%</a></h6>
-									<h6 class="font-weight-normal text-gray"><span class="icon w-20 icon-xs icon-primary mr-1"><span class="fas fa-mobile-alt"></span></span> Mobile Web <a href="#" class="h6">30%</a></h6>
-									<h6 class="font-weight-normal text-gray"><span class="icon w-20 icon-xs icon-tertiary mr-1"><span class="fas fa-tablet-alt"></span></span> Tablet Web <a href="#" class="h6">10%</a></h6>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-		</div>
+
 				<c:import url="components/footer.jsp"/>
 			</main>
 		</div>

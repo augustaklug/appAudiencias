@@ -54,7 +54,7 @@ public class AudienciaController {
             ) {
         audienciaService.incluir(audiencia);
         model.addAttribute("mensagem", "Audiência cadastrada com sucesso - autos nº "+audiencia.getProcesso());
-        return this.cadastrarAudiencia(model);
+        return this.listarAPI(model);
     }
 
     @RequestMapping(value = "/admin/listar.audiencias", method = RequestMethod.GET)
