@@ -4,7 +4,6 @@ import br.com.infnet.appAudiencias.model.negocio.Pessoa;
 import br.com.infnet.appAudiencias.model.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

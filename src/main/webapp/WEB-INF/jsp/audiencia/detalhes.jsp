@@ -122,11 +122,10 @@
 														</button>
 														<div class="dropdown-menu">
 															<c:if test="${pessoa.intimada == false}">
-																<a class="dropdown-item" href="#"><span class="fas fa-edit"></span>Editar</a>
-																<a class="dropdown-item text-success" href="#"><span class="far fa-check-square"></span>Intimar</a>
+																<button type="button" class="dropdown-item text-success" data-toggle="modal" data-target="#modal-intimacao-${pessoa.id}"><span class="far fa-check-square"></span>Intimar</button>
 															</c:if>
 															<c:if test="${pessoa.intimada == true}">
-																<a class="dropdown-item text-info" href=""><span class="far fa-eye"></span>Visualizar</a>
+																<button type="button" class="dropdown-item text-info" data-toggle="modal" data-target="#modal-visualizar-${pessoa.id}"><span class="far fa-eye"></span>Visualizar</button>
 															</c:if>
 															<form action="/excluir.pessoa/${pessoa.id}" method="post">
 																<button type="submit" class="dropdown-item text-danger"><span class="far fa-trash-alt"></span>Excluir</button>
@@ -141,9 +140,9 @@
 									<div class="mt-4">
 										<c:if test="${audiencia.cumprida == false}">
 											<%--Botão do modal--%>
-											<button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#modal-default">Cadastrar novo</button>
-											<%--Modal--%>
-											<div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+											<button type="button" class="btn btn-secondary mb-3" data-toggle="modal" data-target="#modal-cadastro-participante">Cadastrar novo</button>
+											<%--Modal de Cadastro--%>
+											<div class="modal fade" id="modal-cadastro-participante" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
 												<div class="modal-dialog modal-dialog-centered" role="document">
 													<div class="modal-content">
 															<%--Header--%>
@@ -179,17 +178,97 @@
 													</div>
 												</div>
 											</div>
-											<%--Fim do modal--%>
+											<%--Fim do modal de cadastro--%>
 										</c:if>
-									</div>
 
 								</div>
+
 							</div>
 						</div>
 					</div>
+				</div>
 
-					<c:import url="../components/footer.jsp"/>
+				<c:import url="../components/footer.jsp"/>
 			</main>
+			<c:forEach var="pessoa" items="${participantes}">
+				<%--Modal de Intimação--%>
+				<div class="modal fade" id="modal-intimacao-${pessoa.id}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+								<%--Header--%>
+							<div class="modal-header">
+								<h2 class="h6 modal-title">Registro de intimação de participante: <em>${pessoa.nome}</em></h2>
+							</div>
+								<%--Corpo--%>
+							<div class="modal-body">
+								<form action="/cadastrar.intimacao" method="post">
+									<input hidden name="pessoaId" value="${pessoa.id}">
+										<%--Data--%>
+									<div class="mb-3">
+										<label for="data">Data</label>
+										<div class="input-group">
+											<span class="input-group-text" id="basic-addon3"><span class="fas fa-calendar"></span></span>
+											<input type="date" class="form-control" id="data" name="data" placeholder="dd/mm/aaaa" required>
+										</div>
+									</div>
+										<%--Hora--%>
+									<div class="mb-3">
+										<label for="hora">Hora</label>
+										<div class="input-group">
+											<span class="input-group-text" id="basic-addon4"><span class="fas fa-clock"></span></span>
+											<input type="time" class="form-control" id="hora" name="hora" placeholder="HH:mm" required>
+										</div>
+									</div>
+										<%--Forma--%>
+									<div class="mb-3">
+										<label for="forma">Forma</label>
+										<div class="input-group">
+											<span class="input-group-text" id="basic-addon5"><span class="fas fa-clock"></span></span>
+											<select class="form-select" id="forma" name="forma" required>
+												<option value="Telefone">Telefone</option>
+												<option value="WhatsApp">WhatsApp</option>
+												<option value="Mandado">Mandado</option>
+												<option value="Requisição">Requisição</option>
+											</select>
+										</div>
+									</div>
+									<span class="modal-footer">
+															<button type="submit" class="btn btn-md btn-secondary">Cadastrar</button>
+																<button type="button" class="btn btn-link text-danger ml-auto" data-dismiss="modal">Cancelar</button>
+																	</span>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<%--Fim do modal de intimação--%>
+			</c:forEach>
+
+			<c:forEach var="pessoa" items="${participantes}">
+				<%--Modal de Visualização--%>
+			<div class="modal fade" id="modal-visualizar-${pessoa.id}" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+							<%--Header--%>
+						<div class="modal-header">
+							<h2 class="h6 modal-title">Dados da intimação de participante: <em>${pessoa.nome}</em></h2>
+						</div>
+							<%--Corpo--%>
+						<div class="modal-body">
+							<h6>Data: <fmt:formatDate type ="date" dateStyle ="short" value = "${pessoa.intimacao.data}" /> </h6>
+							<h6>Hora: ${pessoa.intimacao.hora}</h6>
+							<h6>Forma: ${pessoa.intimacao.forma}</h6>
+						</div>
+						<span class="modal-footer">
+																<button type="button" class="btn btn-link text-danger ml-auto" data-dismiss="modal">Fechar</button>
+																	</span>
+
+					</div>
+				</div>
+			</div>
+		</div>
+			<%--Fim do modal de visualização--%>
+		</c:forEach>
 		</div>
 	</div>
 </div>

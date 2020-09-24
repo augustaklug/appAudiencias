@@ -16,6 +16,8 @@ public class PessoaService {
 
     public void excluir(Integer id){pessoaRepository.deleteById(id);}
 
+    public Pessoa buscaPorId(Integer id){return pessoaRepository.porId(id);}
+
     public List<Pessoa> participantesPorId(Integer id){return pessoaRepository.participantesPorId(id);}
 
 }

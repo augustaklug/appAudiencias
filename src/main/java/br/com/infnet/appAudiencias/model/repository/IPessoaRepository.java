@@ -12,4 +12,7 @@ public interface IPessoaRepository extends CrudRepository<Pessoa, Integer> {
 
     @Query("from Pessoa p where p.audiencia.id =:id")
     List<Pessoa>  participantesPorId(Integer id);
+
+    @Query("from Pessoa p where p.id=:id")
+    Pessoa porId(Integer id);
 }

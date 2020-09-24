@@ -85,7 +85,7 @@
 
 										<!-- Form -->
 										<div class="mb-3">
-											<label class="my-1 mr-2" for="responsavel">Responsável</label>
+											<label class="my-1 mr-2" for="responsavel"><span>Responsável</span></label>
 											<select class="form-select" id="responsavel" name="responsavel.login" required>
 												<c:forEach var="u" items="${listaUsuarios}">
 													<option value="${u.login}">${u.nome}</option>

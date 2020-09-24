@@ -77,7 +77,7 @@
 
 										<div class="form-check form-switch pt-2 mb-3">
 											<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" value="true" name="reuPreso">
-											<label class="form-check-label" for="flexSwitchCheckDefault">Réu preso</label>
+											<label class="form-check-label" for="flexSwitchCheckDefault"><mark class="text-danger">Réu preso</mark></label>
 										</div>
 									</div>
 
@@ -85,12 +85,15 @@
 
 										<!-- Form -->
 										<div class="mb-3">
+
 											<label class="my-1 mr-2" for="responsavel">Responsável</label>
 											<select class="form-select" id="responsavel" name="responsavel.login" required>
 												<c:forEach var="u" items="${listaUsuarios}">
+													<option value="">Selecione...</option>
 													<option value="${u.login}">${u.nome}</option>
 												</c:forEach>
 											</select>
+
 										</div>
 										<!-- End of Form -->
 

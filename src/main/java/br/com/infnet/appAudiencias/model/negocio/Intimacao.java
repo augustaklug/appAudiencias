@@ -2,25 +2,26 @@ package br.com.infnet.appAudiencias.model.negocio;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.sql.Date;
-import java.sql.Time;
+import javax.persistence.*;
+import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 public class Intimacao {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date data;
     @DateTimeFormat(pattern = "HH:mm")
-    private Time hora;
+    private LocalTime hora;
     private String forma;
 
     public Intimacao() {
     }
 
-    public Intimacao(Date data, Time hora, String forma) {
+    public Intimacao(Date data, LocalTime hora, String forma) {
         this.data = data;
         this.hora = hora;
         this.forma = forma;
@@ -42,11 +43,11 @@ public class Intimacao {
         this.data = data;
     }
 
-    public Time getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
