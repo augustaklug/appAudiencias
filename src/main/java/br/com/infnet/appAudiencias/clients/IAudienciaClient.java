@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(url = "localhost:8081", name = "audienciaClient")
+@FeignClient(url = "https://audiencias-api.herokuapp.com", name = "audienciaClient")
 public interface IAudienciaClient {
     @GetMapping("/api/audiencia")
     public List<Audiencia> obterLista();
