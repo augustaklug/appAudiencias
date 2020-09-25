@@ -20,4 +20,5 @@ public class PessoaService {
 
     public List<Pessoa> participantesPorId(Integer id){return pessoaRepository.participantesPorId(id);}
 
+    public List<Pessoa> findPessoasByNome(String nome){return pessoaRepository.findPessoasByNomeContains(nome);}
 }

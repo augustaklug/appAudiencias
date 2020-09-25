@@ -60,7 +60,7 @@
 						<c:forEach var="aud" items="${listaAudiencias}">
 							<tr>
 								<td><span class="font-weight-normal">${aud.responsavel.nome}</span></td>
-								<td><span class="font-weight-normal">${aud.processo}</span></td>
+								<td><a href="/detalhes/${aud.id}" class="link-gray"><span class="font-weight-normal">${aud.processo}</span></a></td>
 								<td><span class="font-weight-normal">
 													<c:if test="${aud.reuPreso == true}">
 														<span class="icon icon-sm icon-secondary">

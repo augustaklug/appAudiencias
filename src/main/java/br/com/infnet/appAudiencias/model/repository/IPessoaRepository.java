@@ -15,4 +15,6 @@ public interface IPessoaRepository extends CrudRepository<Pessoa, Integer> {
 
     @Query("from Pessoa p where p.id=:id")
     Pessoa porId(Integer id);
+
+    List<Pessoa> findPessoasByNomeContains(String nome);
 }

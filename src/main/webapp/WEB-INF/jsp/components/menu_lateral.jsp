@@ -39,6 +39,12 @@
                 <span>Audiências atrasadas</span>
             </a>
         </li>
+        <li class="nav-item ">
+            <a href="/buscar.pessoa" class="nav-link">
+                <span class="sidebar-icon icon-primary-app"><span class="fas fa-search"></span></span>
+                <span>Buscar pessoas</span>
+            </a>
+        </li>
         <security:authorize access="hasRole('ADMIN')">
         <%--Menu Administrador--%>
             <li role="separator" class="dropdown-divider mt-4 mb-3 border-black"></li>
