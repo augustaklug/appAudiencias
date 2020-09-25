@@ -12,13 +12,10 @@ import java.util.List;
 public interface IAudienciaRepository extends CrudRepository<Audiencia, Integer> {
 
     @Query("from Audiencia a where a.processo =:processo")
-    Audiencia obterPorAutos(String processo);
+    List<Audiencia> obterPorAutos(String processo);
 
-    @Query("from Audiencia a where a.cumprida =true ORDER BY a.data")
-    List<Audiencia> cumpridas();
-
-    @Query("from Audiencia a where a.cumprida =false ORDER BY a.data")
-    List<Audiencia> naoCumpridas();
+    @Query("from Audiencia a where a.cumprida =:situacao ORDER BY a.data")
+    List<Audiencia> listaPorSituacao(Boolean situacao);
 
     @Query("from Audiencia a where a.reuPreso =true ORDER BY a.data")
     List<Audiencia> presos();

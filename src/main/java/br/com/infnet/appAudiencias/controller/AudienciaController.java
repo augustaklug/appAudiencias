@@ -99,7 +99,7 @@ public class AudienciaController {
 
     @RequestMapping(value = "/admin/audiencias.nao.cumpridas", method = RequestMethod.GET)
     public String naoCumpridas(Model model){
-        model.addAttribute("listaAudiencias", audienciaService.naoCumpridas());
+        model.addAttribute("listaAudiencias", audienciaService.listaSituacao(false));
         model.addAttribute("titulo", "Audiências não cumpridas");
         model.addAttribute("subtitulo", "Listagem de todas as audiências não cumpridas");
         return "audiencia/lista";
@@ -107,7 +107,7 @@ public class AudienciaController {
 
     @RequestMapping(value = "/admin/audiencias.cumpridas", method = RequestMethod.GET)
     public String cumpridas(Model model){
-        model.addAttribute("listaAudiencias", audienciaService.cumpridas());
+        model.addAttribute("listaAudiencias", audienciaService.listaSituacao(true));
         model.addAttribute("titulo", "Audiências cumpridas");
         model.addAttribute("subtitulo", "Listagem de todas as audiências cumpridas");
         return "audiencia/lista";

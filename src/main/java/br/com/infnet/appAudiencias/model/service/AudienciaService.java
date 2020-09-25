@@ -11,7 +11,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AudienciaService {
@@ -28,7 +27,7 @@ public class AudienciaService {
 		List<Audiencia> listaParaCadastro = new ArrayList<>();
 		List<Audiencia> listaAPI = client.obterLista();
 		for (Audiencia a : listaAPI) {
-			if(audienciaRepository.obterPorAutos(a.getProcesso()) == null){
+			if(audienciaRepository.obterPorAutos(a.getProcesso()).isEmpty()){
 				listaParaCadastro.add(a);
 			}
 		}
@@ -61,9 +60,7 @@ public class AudienciaService {
 		return (List<Audiencia>) audienciaRepository.ordenadasPorData();
 	}
 
-	public List<Audiencia> naoCumpridas(){return (List<Audiencia>) audienciaRepository.naoCumpridas();}
-
-	public List<Audiencia> cumpridas(){return (List<Audiencia>) audienciaRepository.cumpridas();}
+	public List<Audiencia> listaSituacao(Boolean situacao){return (List<Audiencia>) audienciaRepository.listaPorSituacao(situacao);}
 
 	public List<Audiencia> presos(){return (List<Audiencia>) audienciaRepository.presos();}
 

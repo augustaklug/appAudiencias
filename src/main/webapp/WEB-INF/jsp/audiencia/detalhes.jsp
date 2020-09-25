@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <html lang="pt-br">
@@ -54,7 +55,7 @@
 											</c:if>
 											<h6 class="card-subtitle mb-3 text-muted">Responsável: <span class="font-weight-bolder">${audiencia.responsavel.nome}</span></h6>
 											<div class="mt-3">
-												<p class="mb-2"><strong>Data: </strong><fmt:formatDate type ="date" dateStyle ="short" value = "${audiencia.data}" /></p>
+												<p class="mb-2"><strong>Data: </strong><fmt:formatDate type ="date" dateStyle ="short" value = "${audiencia.data}" var="dataFormatada" /></p>
 												<p class="mb-2"><strong>Hora: </strong>${audiencia.hora}</p>
 												<p class="mb-2"><strong>Cumprida: </strong>
 													<c:if test="${audiencia.cumprida == true}">
@@ -91,6 +92,7 @@
 										<tr>
 											<th>Nome</th>
 											<th>Telefone</th>
+											<th>Mensagem</th>
 											<th>Intimado</th>
 											<th>Ações</th>
 										</tr>
@@ -100,6 +102,20 @@
 											<tr>
 												<td class="font-weight-bolder">${pessoa.nome}</td>
 												<td>${pessoa.telefone}</td>
+												<td>
+													<c:set var="tel1" value="${pessoa.telefone}"/>
+													<c:set var="tel2" value="${fn:replace(tel1, '(','')}"/>
+													<c:set var="tel3" value="${fn:replace(tel2, ')', '')}"/>
+													<c:set var="tel4" value="${fn:replace(tel3, '-', '')}"/>
+													<c:set var="tel5" value="${fn:replace(tel4, ' ', '')}"/>
+													<c:set var="telFormatado" value="${fn:trim(tel5)}"/>
+
+													<a href="https://wa.me/55${telFormatado}?text=Olá Sr(a). ${pessoa.nome}! Estou entrando em contato para intimá-lo(a) para uma audiência no dia ${dataFormatada} às ${audiencia.hora} horas - autos nº ${audiencia.processo}" target="_blank">
+														<span class="icon icon-sm icon-success">
+															<span class="fab fa-whatsapp font-weight-bolder"></span>
+														</span>
+													</a>
+												</td>
 												<td>
 													<c:if test="${pessoa.intimada == true}">
 										<span class="icon icon-sm icon-success">
@@ -166,7 +182,7 @@
 																	<label for="telefone">Telefone</label>
 																	<div class="input-group">
 																		<span class="input-group-text" id="basic-addon2"><span class="fas fa-phone"></span></span>
-																		<input type="text" class="form-control" id="telefone" name="telefone" placeholder="Telefone" required>
+																		<input type="text" class="form-control" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
 																	</div>
 																</div>
 																<span class="modal-footer">
@@ -181,14 +197,14 @@
 											<%--Fim do modal de cadastro--%>
 										</c:if>
 
-								</div>
+									</div>
 
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-				<c:import url="../components/footer.jsp"/>
+					<c:import url="../components/footer.jsp"/>
 			</main>
 			<c:forEach var="pessoa" items="${participantes}">
 				<%--Modal de Intimação--%>
@@ -269,8 +285,8 @@
 		</div>
 			<%--Fim do modal de visualização--%>
 		</c:forEach>
-		</div>
 	</div>
+</div>
 </div>
 
 <!-- Core -->
