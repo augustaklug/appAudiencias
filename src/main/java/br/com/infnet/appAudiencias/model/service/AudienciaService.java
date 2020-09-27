@@ -7,9 +7,10 @@ import br.com.infnet.appAudiencias.model.repository.IAudienciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,6 +19,8 @@ public class AudienciaService {
 	@Autowired private IAudienciaRepository audienciaRepository;
 
 	@Autowired private IAudienciaClient client;
+
+	Date dataLimite = Date.from(LocalDate.now().atStartOfDay().plusDays(7).atZone(ZoneId.systemDefault()).toInstant());
 
 	public List<Audiencia> obterListaAPI(){
 		return (List<Audiencia>) client.obterLista();
@@ -30,10 +33,6 @@ public class AudienciaService {
 			if(audienciaRepository.obterPorAutos(a.getProcesso()).isEmpty()){
 				listaParaCadastro.add(a);
 			}
-		}
-		for (Audiencia a : listaParaCadastro){
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String strDate = dateFormat.format(a.getData());
 		}
 		return listaParaCadastro;
 	}
@@ -66,8 +65,8 @@ public class AudienciaService {
 
 	public List<Audiencia> aCumprirPorResponsavel(Usuario responsavel){return (List<Audiencia>) audienciaRepository.aCumprirPorResponsavel(responsavel);}
 
-	public List<Audiencia> todasAtrasadas(){return (List<Audiencia>) audienciaRepository.todasAtrasadas();}
+	public List<Audiencia> todasAtrasadas(){return (List<Audiencia>) audienciaRepository.todasAtrasadas(dataLimite);}
 
-	public List<Audiencia> atrasadasPorResponsavel(Usuario responsavel){return (List<Audiencia>) audienciaRepository.atrasadasPorResponsavel(responsavel);}
+	public List<Audiencia> atrasadasPorResponsavel(Usuario responsavel){return (List<Audiencia>) audienciaRepository.atrasadasPorResponsavel(dataLimite, responsavel);}
 
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -26,13 +27,12 @@ public interface IAudienciaRepository extends CrudRepository<Audiencia, Integer>
     @Query("from Audiencia a where a.responsavel =:responsavel and a.cumprida =false ORDER BY a.data")
     List<Audiencia> aCumprirPorResponsavel(Usuario responsavel);
 
-    @Query("from Audiencia a where a.data <= current_date + 7 and a.cumprida =false ORDER BY a.data")
-    List<Audiencia> todasAtrasadas();
-
-    @Query("from Audiencia a where a.data <= current_date + 7 and a.responsavel =:responsavel and a.cumprida =false ORDER BY a.data")
-    List<Audiencia> atrasadasPorResponsavel(Usuario responsavel);
-
     @Query("from Audiencia a where a.id =:id")
     Audiencia obterPorId(Integer id);
 
+    @Query("from Audiencia a where a.data <=:dataLimite and a.cumprida =false ORDER BY a.data")
+    List<Audiencia> todasAtrasadas(Date dataLimite);
+
+    @Query("from Audiencia a where a.data <=:dataLimite and a.responsavel =:responsavel and a.cumprida =false ORDER BY a.data")
+    List<Audiencia> atrasadasPorResponsavel(Date dataLimite, Usuario responsavel);
 }

@@ -1,8 +1,8 @@
 package br.com.infnet.appAudiencias.model.negocio;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.deser.std.DateDeserializers;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -22,6 +22,7 @@ public class Audiencia {
     private Boolean reuPreso = false;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = DateDeserializers.DateDeserializer.class)
     private Date data;
     @DateTimeFormat(pattern="HH:mm")
     @JsonDeserialize(using = LocalTimeDeserializer.class)

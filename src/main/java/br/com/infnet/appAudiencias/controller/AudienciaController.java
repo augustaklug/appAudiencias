@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Controller
 public class AudienciaController {
@@ -21,9 +22,6 @@ public class AudienciaController {
 
     @Autowired
     private UsuarioService usuarioService;
-
-    @Autowired
-    private AppController appController;
 
     @Autowired
     private PessoaService pessoaService;
@@ -90,7 +88,8 @@ public class AudienciaController {
 
     @RequestMapping(value = "/audiencias.atrasadas", method = RequestMethod.GET)
     public String atrasadasPorResponsavel(Model model,
-                                          @AuthenticationPrincipal Usuario responsavel){
+                                          @AuthenticationPrincipal Usuario responsavel,
+                                          Date data){
         model.addAttribute("listaAudiencias", audienciaService.atrasadasPorResponsavel(responsavel));
         model.addAttribute("titulo", "Audiências atrasadas");
         model.addAttribute("subtitulo", "Listagem de audiências pendentes do usuário logado nos próximos 7 dias");
